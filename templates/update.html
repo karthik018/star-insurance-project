@@ -1,0 +1,111 @@
+<html lang="en">
+  <head>
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <title>Update Policy</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#Navbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{{ url_for('admin_home') }}">Star Insurance Admin Portal</a>
+        </div>
+        <div class="collapse navbar-collapse" id="Navbar">
+          <ul class="nav navbar-nav">
+              <li><a href="{{ url_for('home') }}">Home</a></li>
+              <li><a href="{{ url_for('upload_new_policy') }}">Add Policy</a></li>
+              <li class="active"><a href="#">Update Policy</a></li>
+              <li><a href="{{ url_for('delete_policy_data') }}">Delete Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6  column col-sm-offset-0 col-md-offset-2 col-lg-offset-3">
+                <form action="{{ url_for('update_policy_data') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                    <fieldset>
+                        <!-- Form Name -->
+                        <legend>Update Policy</legend>
+                        <!-- Select Basic -->
+                        <div class="form-group">
+                          <label class="col-md-3 control-label" for="policy_name">Policy Name</label>
+                          <div class="col-md-9">
+                            <select class="form-control" id="policy_name" name="policy_name">
+                                <option></option>
+                                {% for policy_name in policy_names %}
+                                    <option>{{ policy_name }}</option>
+                                {% endfor %}
+                            </select>
+                          </div>
+                        </div>
+                        <!-- Text area -->
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="policy_content">Policy Content</label>
+                            <div class="col-md-9">
+                                <textarea class="form-control" id="policy_content" name="policy_content"></textarea>
+                            </div>
+                        </div>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="policy_img">Upload Image</label>
+                            <div class="col-md-3">
+                                <input id="policy_img" name="policy_img" type="file" class="form-control-file input-md">
+                            </div>
+                            <div id="file-upload-filename"></div>
+                        </div>
+                        <!-- Multiple Radios (inline) -->
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Display</label>
+                            <div class="col-md-3">
+                                <label class="radio-inline" for="display_yes">
+                                    <input type="radio" name="display" id="display_yes" value="1" checked="checked">
+                                    Yes
+                                </label>
+                                <label class="radio-inline" for="display_no">
+                                    <input type="radio" name="display" id="display_no" value="0">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Button (Double) -->
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"></label>
+                            <div class="col-md-8">
+                                <button id="submit" name="submit" type="submit" class="btn btn-success">Update</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+  </body>
+  <script>
+        $('select').on('change', function() {
+            let policy_name = this.value;
+            let policies_content = {{ policy_data|safe }};
+            let selected_policy_content = policies_content[policy_name];
+            $("textarea#policy_content").val(selected_policy_content);
+        });
+
+        var input = document.getElementById('policy_img');
+        var infoArea = document.getElementById('file-upload-filename');
+        input.addEventListener('change', showFileName);
+
+        function showFileName(event) {
+          var input = event.srcElement;
+          var fileName = input.files[0].name;
+          infoArea.textContent = fileName;
+        }
+  </script>
+</html>

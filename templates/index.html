@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/templatemo-style.css') }}">
+    <title>Star Insurance</title>
+</head>
+
+<body>
+    <div class="fixed-header">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                </button>
+                <a class="navbar-brand" href="#">Star Insurance</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div id="home"></div>
+        {% for indx, policy in enumerate(policies_data) %}
+            {% if indx % 2 == 0 %}
+                <section class="col-md-12 content padding" id="{{ policy[0] }}">
+                    <div class="col-lg-6 col-md-6 col-md-6 content-item">
+                        <img src="{{ url_for('static', filename='images/{}'.format(policy[2])) }}" alt="Image" class="tm-image">
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-md-6 content-item background flexbox">
+                        <h2 class="section-title">{{ policy[0] }}</h2>
+                        <p class="section-text">{{ policy[1] }}</p>
+                    </div>
+                </section>
+            {% else %}
+                <section class="col-md-12 content padding" id="{{ policy[0] }}">
+                    <div class="col-lg-6 col-md-6 col-md-push-6 content-item">
+                        <img src="{{ url_for('static', filename='images/{}'.format(policy[2])) }}" alt="Image" class="tm-image">
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-md-pull-6 content-item background flexbox">
+                        <h2 class="section-title">{{ policy[0] }}</h2>
+                        <p class="section-text">{{ policy[1] }}</p>
+                    </div>
+                </section>
+            {% endif %}
+        {% endfor %}
+
+<footer class="col-md-12 content" id="externals">
+ <div class="col-lg-6 col-md-6 last">
+   <img src="{{ url_for('static', filename='images/5.png') }}" alt="Image" class="tm-image">
+</div>
+<div class="col-lg-6 col-md-6 background last about-text-container">
+   <h2 class="section-title">About This Website</h2>
+   <p class="about-text">Puzzle Template is brought to you by templatemo. Sed imperdiet quis ipsum a vulputate. Suspendisse sit amet nibh mi. In quis sapien a metus interdum hendrerit.</p>       
+</div>
+</footer>
+
+</div>
+
+<div class="text-center footer">
+	<div class="container">
+
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.singlePageNav.min.js') }}"></script>
+
+<script>
+
+// Check scroll position and add/remove background to navbar
+function checkScrollPosition() {
+    if($(window).scrollTop() > 50) {
+      $(".fixed-header").addClass("scroll");
+  } else {        
+      $(".fixed-header").removeClass("scroll");
+  }
+}
+
+$(document).ready(function () {   
+    // Single page nav
+    $('.fixed-header').singlePageNav({
+        offset: 59,
+        filter: ':not(.external)',
+        updateHash: true        
+    });
+
+    checkScrollPosition();
+
+    // nav bar
+    $('.navbar-toggle').click(function(){
+        $('.main-menu').toggleClass('show');
+    });
+
+    $('.main-menu a').click(function(){
+        $('.main-menu').removeClass('show');
+    });
+});
+
+$(window).on("scroll", function() {
+    checkScrollPosition();    
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<html lang="en">
+  <head>
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <title>Delete Policy</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#Navbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{{ url_for('admin_home') }}">Star Insurance Admin Portal</a>
+        </div>
+        <div class="collapse navbar-collapse" id="Navbar">
+          <ul class="nav navbar-nav">
+              <li><a href="{{ url_for('home') }}">Home</a></li>
+              <li><a href="{{ url_for('upload_new_policy') }}">Add Policy</a></li>
+              <li><a href="{{ url_for('update_policy_data') }}">Update Policy</a></li>
+              <li class="active"><a href="#">Delete Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6  column col-sm-offset-0 col-md-offset-2 col-lg-offset-3">
+                <form action="{{ url_for('delete_policy_data') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                    <fieldset>
+                        <!-- Form Name -->
+                        <legend>Delete Policy</legend>
+                        <!-- Select Basic -->
+                        <div class="form-group">
+                          <label class="col-md-3 control-label" for="policy_name">Policy Name</label>
+                          <div class="col-md-9">
+                            <select class="form-control" id="policy_name" name="policy_name">
+                                <option></option>
+                                {% for policy_name in policy_names %}
+                                    <option>{{ policy_name }}</option>
+                                {% endfor %}
+                            </select>
+                          </div>
+                        </div>
+                        <!-- Button (Double) -->
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"></label>
+                            <div class="col-md-8">
+                                <button id="submit" name="submit" type="submit" class="btn btn-danger">Delete</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>

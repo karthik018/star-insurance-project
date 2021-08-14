@@ -1,0 +1,63 @@
+<html lang="en">
+  <head>
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <title>Admin Portal</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#Navbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{{ url_for('admin_home') }}">Star Insurance Admin Portal</a>
+        </div>
+        <div class="collapse navbar-collapse" id="Navbar">
+          <ul class="nav navbar-nav">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6  column col-sm-offset-0 col-md-offset-2 col-lg-offset-3">
+                <fieldset>
+                    <legend>Admin Operations</legend>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                          <thead class="thead-dark">
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Operation</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr class="info">
+                              <th scope="row">1</th>
+                              <td><a href="{{ url_for('upload_new_policy') }}" class="link-primary">Add New Policy</a></td>
+                            </tr>
+                            <tr class="info">
+                              <th scope="row">2</th>
+                              <td><a href="{{ url_for('update_policy_data') }}" class="link-primary">Update Policy</a></td>
+                            </tr>
+                            <tr class="danger">
+                              <th scope="row">3</th>
+                              <td><a href="{{ url_for('delete_policy_data') }}" class="link-danger">Delete Policy</a></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>
