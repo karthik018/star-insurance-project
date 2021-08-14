@@ -7,10 +7,11 @@ def get_db_connection():
     global db_conn
     if not db_conn:
         db_conn = mysql.connector.connect(
-            host='localhost',
-            user='root',
-            password='',
-            database='StarProject'
+            host='remotemysql.com',
+            port=3306,
+            user='6u0Lxq4dME',
+            password='lkWKelAyML',
+            database='6u0Lxq4dME'
         )
 
     return db_conn
