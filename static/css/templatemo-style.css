@@ -107,6 +107,9 @@ p {
     padding-right: 0px;
     padding-left: 0px;
 }
+.content img {
+    min-height: 284px !important;
+}
 .content-item {
     padding-right: 0px;
     padding-left: 0px;
