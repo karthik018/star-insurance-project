@@ -1,10 +1,12 @@
 import json
 import os
 from os.path import join, dirname, realpath
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request, flash, url_for
 from flask_session import Session
 from werkzeug.utils import secure_filename, redirect
 from utils import store_new_policy, get_policies_data, get_policy_wise_content, update_policy, delete_policy
+import smtplib
+import ssl
 
 UPLOAD_FOLDER = join(dirname(realpath(__file__)), 'static/images')
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
@@ -20,6 +22,31 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def home():
     policies_data = get_policies_data()
     return render_template('index.html', policies_data=policies_data, enumerate=enumerate)
+
+
+@app.route('/send_email', methods=['POST'])
+def send_email():
+    ssl_port = 465
+    smtp_server = "smtp.gmail.com"
+    receiver_email = os.environ.get('EMAIL', "lakshmi.srinivas2357@gmail.com")
+    password = os.environ.get('PASSWORD', '9392447726')
+    request_data = request.form.to_dict()
+    sender_email = os.environ.get('EMAIL', "lakshmi.srinivas2357@gmail.com")
+    name = request_data.get('name')
+    mobile = request_data.get('mobile')
+    email = request_data.get('email')
+    message = f"""
+    Subject: Insure To Secure User Contact Info \n\n
+    Name: {name}
+    Mobile: {mobile}
+    Email: {email}
+    """
+    context = ssl.create_default_context()
+    with smtplib.SMTP_SSL(smtp_server, ssl_port, context=context) as server:
+        server.login(sender_email, password)
+        server.sendmail(sender_email, receiver_email, message)
+
+    return redirect(url_for('home'))
 
 
 @app.route('/api/v1/admin/', methods=['GET'])
