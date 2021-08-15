@@ -107,9 +107,6 @@ p {
     padding-right: 0px;
     padding-left: 0px;
 }
-.content img {
-    min-height: 284px !important;
-}
 .content-item {
     padding-right: 0px;
     padding-left: 0px;
@@ -210,6 +207,9 @@ p {
 .btn-big {
     padding: 10px 40px;
     min-width: 176px;
+}
+.contact {
+    min-height: 385px !important;
 }
 .btn-contact {
     font-size: 17px;
