@@ -113,10 +113,11 @@ p {
 .content-item {
     padding-right: 0px;
     padding-left: 0px;
-    min-height:570px !important;
+    min-height:480px !important;
 }
 .content-item img {
-    min-height:570px !important;
+    min-height:480px !important;
+    max-height:480px !important;
 }
 .content-item p:last-child {
     margin-bottom: 0;
