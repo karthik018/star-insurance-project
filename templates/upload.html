@@ -56,7 +56,6 @@
                             <div class="col-md-3">
                                 <input id="policy_img" name="policy_img" type="file" class="form-control-file input-md">
                             </div>
-                            <div id="file-upload-filename"></div>
                         </div>
                         <!-- Multiple Radios (inline) -->
                         <div class="form-group">
@@ -85,15 +84,4 @@
         </div>
     </div>
   </body>
-  <script>
-        var input = document.getElementById('policy_img');
-        var infoArea = document.getElementById('file-upload-filename');
-        input.addEventListener('change', showFileName);
-
-        function showFileName(event) {
-          var input = event.srcElement;
-          var fileName = input.files[0].name;
-          infoArea.textContent = fileName;
-        }
-  </script>
 </html>
