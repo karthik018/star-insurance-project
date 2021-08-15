@@ -10,7 +10,7 @@ def get_db_connection():
             host='remotemysql.com',
             port=3306,
             user='6u0Lxq4dME',
-            password='lkWKelAyML',
+            password='fKZFAGvLAY',
             database='6u0Lxq4dME'
         )
 
